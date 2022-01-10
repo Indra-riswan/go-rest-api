@@ -12,7 +12,7 @@ import (
 
 type AuthService interface {
 	VerifyCredintial(email string, password string) interface{}
-	CreateUser(user dto.CreateUserDto) entity.User
+	CreateUser(user dto.RegisterDto) entity.User
 	FindByEmail(email string) entity.User
 	IsduplicatEmail(email string) bool
 }
@@ -39,7 +39,7 @@ func (service *authService) VerifyCredintial(email string, password string) inte
 	return false
 }
 
-func (service *authService) CreateUser(user dto.CreateUserDto) entity.User {
+func (service *authService) CreateUser(user dto.RegisterDto) entity.User {
 	usercreate := entity.User{}
 	err := smapping.FillStruct(&usercreate, smapping.MapFields(&user))
 	if err != nil {
